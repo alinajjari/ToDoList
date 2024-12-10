@@ -1,7 +1,6 @@
 import { useState } from "react"
 
-function NewTask() {
-  const [fornList, setFormList] = useState([])
+function NewTask(props) {
 
   const [formInput, setformInput] = useState({
   })
@@ -12,26 +11,28 @@ function NewTask() {
       ...curr,
       id: Date.now(),
       [e.target.name] : e.target.value,
+      [e.target.name]: e.target.value,
       [e.target.name]: e.target.value
     }));
   }
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-    setFormList([...fornList, formInput])
+    props.setFormList([...props.fornList, formInput])
     setformInput({
       title: "",
-      desc: ""
+      desc: "",
+      status: ""
     })
   }
 
   return (
     <form className="text-white" onSubmit={handleSubmit}>
           <input name="title" value={formInput.title} onChange={handleChangeInput} className="w-full bg-slate-900 rounded-full p-3 mb-3 placeholder:text-xs focus:outline-none" type="text" placeholder="Add Title..." id="" />
-          <select className="w-full bg-slate-900 rounded-full p-3 mb-3 placeholder:text-xs focus:outline-none" placeholder="Status..." name="" id="">
-            <option value="digikala">s</option>
-            <option value="apple">s</option>
-            <option value="snapp">s</option>
+          <select name="status" value={formInput.status} onChange={handleChangeInput} className="w-full bg-slate-900 rounded-full p-3 mb-3 placeholder:text-xs focus:outline-none" placeholder="Status..." id="">
+            <option value="completed">Completed</option>
+            <option value="progress">In Progress</option>
+            <option value="delayed">Delayed</option>
           </select>
           <textarea name="desc" value={formInput.desc} onChange={handleChangeInput} className="w-full bg-slate-900 rounded-xl p-3 mb-3 placeholder:text-xs focus:outline-none h-28" placeholder="Add Description..." id=""></textarea>
           <button onClick={handleSubmit} className="bg-orange-700 w-full p-3 text-center rounded-full cursor-pointer" type="submit">Add Task...</button>
