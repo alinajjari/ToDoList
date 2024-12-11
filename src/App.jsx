@@ -6,11 +6,14 @@ function App() {
   const [fornList, setFormList] = useState([])
   const btnDelete = (itemdelete)=>{
     const newFornList = fornList.filter((item)=>{
-      if (item === itemdelete) {
+      if (item.id === itemdelete) {
         return false;
+      }else{
+        return true;
       }
-      setFormList(newFornList)
     })
+    setFormList(newFornList)
+    console.log(itemdelete)
   }
 
   return (

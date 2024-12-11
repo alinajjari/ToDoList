@@ -1,11 +1,11 @@
 import ItemList from "./ItemList"
 
-function TaskItem(props) {
+function TaskItem(props, {btnDelete}) {
   if (props.fornList.length > 0) {
     return (
       props.fornList.map((task, index)=>{
         return(
-          <ItemList key={index} task={task} />
+          <ItemList key={index} task={task} index={index} btnDelete={btnDelete} />
         )
       })
     )
